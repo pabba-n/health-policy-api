@@ -17,10 +17,7 @@
 			console.log("1 - request object created");
  
 			// Step 2: Set the URL for the AJAX request to be the JSON file
- 
-		// request.open("GET", "https://www.healthit.gov/data/open-api?source=SKA_State_County_Data_2011-2013.csv", true)
 			request.open("GET", "https://www.healthit.gov/data/open-api?source=state-health-it-privacy-consent-law-policies.csv", true)
-			
 			console.log("2 - opened request file");
  
 			// Step 3: set up event handler/callback
@@ -35,10 +32,10 @@
 					result = request.responseText;
 					data = JSON.parse(result);
 					string = JSON.stringify(data)
-					string += "<br><br><br>1. The API I selected describes health information disclosure policies across all 50 states since these policies can vary across state lines. What the API does is give you information about the disclosure policies in each state and whether patients must opt-in in order for their health information to be sent from place to place. ";
-					string += "<br><br><br>2. The website I used was <a href=\"https://www.healthit.gov/data/datasets/state-health-it-privacy-and-consent-laws-and-policies\">this.</a>"
-					string += "<br><br><br>3. describe the options you used for the API request...";
-					string += "<br><br><br>4. This API can be used to make it easier to find what states have opt-in disclosure policies. This can be done in 2 ways. One, having a select bar to select a state and then displaying information about that state's policies. And two, creating an interactive map for a user to toggle over a state and see the state's health disclosure policies.";
+					string += "<br><br><br><b>1. The API I selected describes health information disclosure policies across all 50 states since these policies can vary across state lines. What the API does is give you information about the disclosure policies in each state and whether patients must opt-in in order for their health information to be sent from place to place. </b>";
+					string += "<br><br><br><b>2. The website I used was <a href=\"https://www.healthit.gov/data/datasets/state-health-it-privacy-and-consent-laws-and-policies\">this.</a></b>"
+					string += "<br><br><br><b>3. describe the options you used for the API request...</b>";
+					string += "<br><br><br><b>4. This API can be used to make it easier to find what states have opt-in disclosure policies. This can be done in 2 ways. One, having a select bar to select a state and then displaying information about that state's policies. And two, creating an interactive map for a user to toggle over a state and see the state's health disclosure policies.</b>";
 					// console.log(data[0]["state"]);
 					// var t= "Select a state: ";
 					// t += "<select id='state'>";
@@ -46,7 +43,7 @@
 					// 	t += "<option>" + data[i]["state"] + "</option>";
 					// }
 					// t+= "</select>"; 
-					document.getElementById("data").innerHTML = string;	 
+					document.getElementById("data").innerHTML = string;
 					
 				} else if (request.readyState == 4 && request.status != 200) {
 
@@ -66,11 +63,9 @@
 			request.send();
 			console.log("4 - Request sent");
 		}
-		$('select').on('change', (event) => {
-						console.log(event)
-						console.log("val: " + document.getElementById("#state").val());
-		});
-		
+		fetch('https://www.healthit.gov/data/open-api?source=state-health-it-privacy-consent-law-policies.csv')
+			.then((response) => response.json())
+			.then((data) => console.log(JSON.stringify(data)))
 	</script>
 </head>
 
@@ -80,4 +75,8 @@
 	<h1>Health Information Disclosure Policies</h1>
 	<div id="data">Loading...</div>
 </body>
+
+<script>
+	
+</script>
 </html>

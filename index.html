@@ -34,15 +34,8 @@
 					string = JSON.stringify(data)
 					string += "<br><br><br><b>1. The API I selected describes health information disclosure policies across all 50 states since these policies can vary across state lines. What the API does is give you information about the disclosure policies in each state and whether patients must opt-in in order for their health information to be sent from place to place. </b>";
 					string += "<br><br><br><b>2. The website I used was <a href=\"https://www.healthit.gov/data/datasets/state-health-it-privacy-and-consent-laws-and-policies\">this.</a></b>"
-					string += "<br><br><br><b>3. describe the options you used for the API request...</b>";
+					string += "<br><br><br><b>3. I used AJAX and fetch to retrieve the data. AJAX relies on events versus fetch utilizes promises. The benefits of AJAX using events is that it allows you to be able to see each step of the API call if you'd like. You are unable to do this with fetch.</b>";
 					string += "<br><br><br><b>4. This API can be used to make it easier to find what states have opt-in disclosure policies. This can be done in 2 ways. One, having a select bar to select a state and then displaying information about that state's policies. And two, creating an interactive map for a user to toggle over a state and see the state's health disclosure policies.</b>";
-					// console.log(data[0]["state"]);
-					// var t= "Select a state: ";
-					// t += "<select id='state'>";
-					// for(i=0; i<50; i++) {
-					// 	t += "<option>" + data[i]["state"] + "</option>";
-					// }
-					// t+= "</select>"; 
 					document.getElementById("data").innerHTML = string;
 					
 				} else if (request.readyState == 4 && request.status != 200) {

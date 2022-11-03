@@ -7,23 +7,18 @@
 	<script    src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
 	<script>	
 		function getPolicy() {
-			/* Step 1: Make instance of request object...
-			...to make HTTP request after page is loaded*/
+
 			request = new XMLHttpRequest();
 			console.log("1 - request object created");
  
-			// Step 2: Set the URL for the AJAX request to be the JSON file
 			request.open("GET", "https://www.healthit.gov/data/open-api?source=state-health-it-privacy-consent-law-policies.csv", true)
 			console.log("2 - opened request file");
- 
-			// Step 3: set up event handler/callback
 
 			request.onreadystatechange = function() {
 				console.log("3 - readystatechange event fired.");
  
 				if (request.readyState == 4 && request.status == 200) {
 
-					// Step 5: wait for done + success
 					console.log("5 - response received");
 					result = request.responseText;
 					data = JSON.parse(result);
@@ -46,7 +41,6 @@
 						console.log(document.getElementById("state").value);
 						console.log($("#state option:selected").index())
 						document.getElementById("display").innerHTML = t + "<br><br><b style='color: purple;' >State: </b>"+ data[index]["state"] + "<br><br><b style='color: purple;' >Type of Consent Policy: </b>" + data[index]["type_of_consent_policy"] + "<br><br><b style='color: purple;'>Details of Consent Policy: </b>" + data[index]["details_of_consent_policy"];
-						// document.getElementById("data").innerHTML = string;
 					});
 					
 				} else if (request.readyState == 4 && request.status != 200) {
@@ -63,24 +57,19 @@
 
 			}
 			
-		// Step 4: fire off the HTTP request
 			request.send();
 			console.log("4 - Request sent");
 		}
 		fetch('https://www.healthit.gov/data/open-api?source=state-health-it-privacy-consent-law-policies.csv')
 			.then((response) => response.json())
 			.then((data) => console.log(data))
-			
-			
+				
 	</script>
 </head>
-
-
 <body onload="getPolicy()">
 	<h1 style="font-family: 'Dangrek'; font-size: 40px; color: purple;">Health Information Disclosure Policies</h1>
 	<div id="display" style="background-color: white; font-family: 'Barlow Condensed'; font-size: 20px; margin-left: 100px; margin-right: 100px;"></div>
 	<div id="data" style="background-color: white; font-family: 'Barlow Condensed';">Loading...</div>
-	
 </body>
 
 <script>

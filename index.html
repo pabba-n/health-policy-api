@@ -1,15 +1,11 @@
 <!doctype html>
 <html>
 <head>
+	<style> @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Dangrek&display=swap');</style>
 	<title>Health Information Disclosure Policy API</title>
 	<meta charset="utf-8"/>
 	<script    src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
-	<script>
-		
-				
-				
-
-			
+	<script>	
 		function getPolicy() {
 			/* Step 1: Make instance of request object...
 			...to make HTTP request after page is loaded*/
@@ -42,13 +38,15 @@
 						t += "<option>" + data[i]["state"] + "</option>";
 					}
 					t+= "</select>"; 
-					document.getElementById("data").innerHTML = t + string;
+					document.getElementById("display").innerHTML = t;
+					document.getElementById("data").innerHTML = string;
 
 					$(document).on('change', '#state', function() {
 						var index = $("#state option:selected").index() - 1;
 						console.log(document.getElementById("state").value);
 						console.log($("#state option:selected").index())
-						document.getElementById("data").innerHTML = t + "<br><br>"+ data[index]["state"] + "<br><br>" + data[index]["type_of_consent_policy"] + "<br><br>" + data[index]["details_of_consent_policy"] + string;
+						document.getElementById("display").innerHTML = t + "<br><br><b style='color: purple;' >State: </b>"+ data[index]["state"] + "<br><br><b style='color: purple;' >Type of Consent Policy: </b>" + data[index]["type_of_consent_policy"] + "<br><br><b style='color: purple;'>Details of Consent Policy: </b>" + data[index]["details_of_consent_policy"];
+						// document.getElementById("data").innerHTML = string;
 					});
 					
 				} else if (request.readyState == 4 && request.status != 200) {
@@ -79,9 +77,10 @@
 
 
 <body onload="getPolicy()">
-
-	<h1>Health Information Disclosure Policies</h1>
-	<div id="data">Loading...</div>
+	<h1 style="font-family: 'Dangrek'; font-size: 40px; color: purple;">Health Information Disclosure Policies</h1>
+	<div id="display" style="background-color: white; font-family: 'Barlow Condensed'; font-size: 20px; margin-left: 100px; margin-right: 100px;"></div>
+	<div id="data" style="background-color: white; font-family: 'Barlow Condensed';">Loading...</div>
+	
 </body>
 
 <script>

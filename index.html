@@ -38,8 +38,6 @@
 
 					$(document).on('change', '#state', function() {
 						var index = $("#state option:selected").index() - 1;
-						console.log(document.getElementById("state").value);
-						console.log($("#state option:selected").index())
 						document.getElementById("display").innerHTML = t + "<br><br><b style='color: purple;' >State: </b>"+ data[index]["state"] + "<br><br><b style='color: purple;' >Type of Consent Policy: </b>" + data[index]["type_of_consent_policy"] + "<br><br><b style='color: purple;'>Details of Consent Policy: </b>" + data[index]["details_of_consent_policy"];
 					});
 					
